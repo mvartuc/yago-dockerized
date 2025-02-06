@@ -1,0 +1,317 @@
+/*
+FONTS
+*/
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/Open_Sans/OpenSans-RegularItalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/Open_Sans/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/Open_Sans/OpenSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/*
+GENERAL
+*/
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    margin: 2.8rem 0 1.68rem 0;
+}
+
+h2 {
+    font-size: 1.7em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+h1, h2, h3, h4, p {
+    color: #000000;
+}
+
+a {
+    color: #02aed7;
+}
+
+.wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+:focus {
+    outline: none;
+}
+
+ul.browser-default li, ol li {
+    margin-bottom: 0.5rem;
+}
+
+blockquote {
+    border-left-color: #02aed7;
+}
+
+/*
+HEADER
+*/
+
+.logo {
+    padding-bottom: 2vh;
+}
+
+.logo img {
+    width: auto;
+    height: 15vh;
+    margin: 0 auto;
+    display: block;
+}
+
+nav {
+    background-color: #ccecf3;
+    height: 40px;
+    line-height: 40px;
+}
+
+.dropdown-content {
+        overflow-x: hidden;
+}
+
+nav .nav-wrapper i, nav a.sidenav-trigger i {
+    height: 40px;
+    line-height: 40px;
+}
+
+.nav-wrapper .nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+nav ul a {
+    color: black;
+}
+
+nav li {
+    margin-right: 1rem;
+}
+
+.sidenav-trigger {
+    color: #000000;
+}
+
+/*
+FOOTER
+*/
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.affiliation-logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.affiliation-logos img {
+    width: auto;
+    height: 10vh;
+    padding: 0 1rem;
+}
+
+
+/*
+CONTENT
+*/
+
+.content {
+    min-height: 60vh;
+}
+
+.demo {
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+/*
+ DOWNLAODS
+ */
+
+.downloads .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.downloads .row .item {
+    width: 50%;
+    text-align: center;
+    background-color: #f0efef;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.downloads .row .item.left {
+    margin-right: 1rem;
+}
+
+.downloads .row .item.right {
+    margin-left: 1rem;
+}
+
+.code-container {
+    background-color: #f0efef;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    /*text-align: justify;*/
+}
+
+.code-container:first-child {
+    margin-top: 2.8rem;
+}
+
+.code-container h1,
+.code-container h2,
+.item h2 {
+    margin-top: 1rem;
+}
+
+
+/*
+news on the front page
+*/
+
+.news_item {
+
+    margin-bottom: 10px;
+}
+
+.news_time {
+    font-style: italic;
+    color: grey;
+}
+
+.news_text {
+    margin-top: 2px;
+
+}
+
+/*
+Contributors
+*/
+.contributors-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 720px) {
+    .contributors-row {
+        flex-direction: column;
+    }
+}
+
+.contributor {
+    text-align: center;
+    flex-basis: 100%;
+}
+
+.head-shot {
+    width: auto;
+    height: 150px;
+    border-radius: 50% 50%;
+}
+
+/*
+Publications
+*/
+.publications-list p {
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+}
+
+blockquote p {
+    line-height: 1.5;
+}
+
+.publications-list a, blockquote a {
+    color: unset;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.publications-list .pdf-download-icon, blockquote .pdf-download-icon {
+    border: 0;
+}
+
+.publications-list .award, blockquote .award {
+    color: #e05c5c;
+}
+
+/*
+Entities
+ */
+.card {
+    margin-top: 2em;
+}
+
+.tree-edge {
+    margin-left: 2em;
+}
+
+nav .nav-wrapper .breadcrumb a {
+    color: black;
+}
+
+nav .nav-wrapper {
+    margin-left: 2em;
+}
+
+.card td {
+    max-width: 500px;
+    word-break: break-all;
+}
+
+.fmsbutt {
+	background-color: rgb(2, 174, 215);
+	border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;  
+}
+.fmsbuttaround {
+   text-align: center;
+}

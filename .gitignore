@@ -1,0 +1,3 @@
+data/*
+!data/dataloader.txt
+!data/load-data.sh
