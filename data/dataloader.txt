@@ -3,6 +3,6 @@ propertyFile=/RWStore.properties
 fileOrDirs=/data
 -format=n-triples
 quiet=false
-verbose=0
+verbose=1
 closure=false
 durableQueues=true
