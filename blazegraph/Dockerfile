@@ -1,50 +1,26 @@
-FROM jetty:9.4.57-jdk8-amazoncorretto
+FROM openjdk:8-buster
 
-LABEL authors="mark.cooper@lyrasis.org,jonathan.green@lyrasis.org"
+LABEL maintainer="balhoff@renci.org"
 
-ENV BLAZEGRAPH_NAME=yago \
-    BLAZEGRAPH_RW_PATH=/RWStore.properties \
-    BLAZEGRAPH_VERSION=CANDIDATE_2_1_5 \
-    JAVA_OPTS="-Xmx1g" \
-    JETTY_WEBAPPS=/var/lib/jetty/webapps \
-    BLAZEGRAPH_UID=888 \
-    BLAZEGRAPH_GID=888
-ENV BLAZEGRAPH_VERSION_URL https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_RELEASE_${BLAZEGRAPH_VERSION}/blazegraph.war
+RUN mkdir /blazegraph \
+    && cd /blazegraph \
+    && curl -L -O 'https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_RELEASE_2_1_5/blazegraph.jar' \
+    && curl -L -O 'https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-servlets/9.2.3.v20140905/jetty-servlets-9.2.3.v20140905.jar'
 
-ADD RWStore.properties $BLAZEGRAPH_RW_PATH
-ADD entrypoint.sh /var/lib/jetty/entrypoint.sh
+ADD readonly_cors.xml /blazegraph/readonly_cors.tmp.xml
+ADD entrypoint.sh /blazegraph/entrypoint.sh
 
-USER root
+RUN chmod +x /blazegraph/entrypoint.sh
 
-# Install necessary packages using yum
-RUN yum install -y openssl bash curl wget && \
-    yum clean all
+# create the mount point for configuration files
+RUN mkdir /data
 
-# Install gosu
-ENV GOSU_VERSION 1.17
-RUN set -eux; \
-    \
-    rpmArch="$(rpm --query --queryformat='%{ARCH}' rpm)"; \
-    case "$rpmArch" in \
-    aarch64) dpkgArch='arm64' ;; \
-    armv[67]*) dpkgArch='armhf' ;; \
-    i[3456]86) dpkgArch='i386' ;; \
-    ppc64le) dpkgArch='ppc64el' ;; \
-    riscv64 | s390x) dpkgArch="$rpmArch" ;; \
-    x86_64) dpkgArch='amd64' ;; \
-    *) echo >&2 "error: unknown/unsupported architecture '$rpmArch'"; exit 1 ;; \
-    esac; \
-    wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-    wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-    \
-    chmod +x /usr/local/bin/gosu; \
-    # verify that the binary works
-    gosu --version; \
-    gosu nobody true
+# use --env on the docker run command line to override
+ENV BLAZEGRAPH_MEMORY="10G"
+ENV BLAZEGRAPH_TIMEOUT="60000"
+ENV BLAZEGRAPH_READONLY="false"
 
+# the port on which Blazegraph will be listening within the container
+EXPOSE 8080
 
-RUN wget -O ${JETTY_WEBAPPS}/${BLAZEGRAPH_NAME}.war $BLAZEGRAPH_VERSION_URL
-RUN chmod +x /var/lib/jetty/entrypoint.sh
-
-WORKDIR /var/lib/jetty
-CMD ./entrypoint.sh
+ENTRYPOINT ["/blazegraph/entrypoint.sh"]

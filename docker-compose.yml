@@ -7,17 +7,13 @@ services:
     build:
       context: ./blazegraph
       dockerfile: Dockerfile
-      args:
-        JAVA_OPTS: ${JAVA_OPTS}
-        BLAZEGRAPH_UID: ${BLAZEGRAPH_UID}
-        BLAZEGRAPH_GID: ${BLAZEGRAPH_GID}
     volumes:
       - ./data:/data
       - ./RWStore.properties:/RWStore.properties
-    environment:
-      - BLAZEGRAPH_UID=1000 # Use current user's UID or default to 1000
-      - BLAZEGRAPH_GID=1000 # Use current user's GID or default to 1000
-      - JAVA_OPTS=${JAVA_OPTS}
+    # environment:
+    # - BLAZEGRAPH_UID=1000 # Use current user's UID or default to 1000
+    # - BLAZEGRAPH_GID=1000 # Use current user's GID or default to 1000
+    # - JAVA_OPTS=${JAVA_OPTS}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8889"]

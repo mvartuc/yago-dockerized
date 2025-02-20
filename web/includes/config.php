@@ -42,7 +42,8 @@ function config($key = "")
         "template_path" => "template",
         "content_path" => "content",
         "version" => "v0.1",
-        "sparql_endpoint" => "localhost:8889/bigdata/",
+        "sparql_endpoint" =>
+            "http://localhost:8889/blazegraph/namespace/kb/sparql",
     ];
 
     return isset($config[$key]) ? $config[$key] : null;
