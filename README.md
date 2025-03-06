@@ -50,7 +50,7 @@ This process may take a long time, especially for the full dataset. A **fast SSD
 Once the dataset is loaded, you can access:
 
 - **YAGO Web UI:** [http://localhost:8080](http://localhost:8080)
-- **Blazegraph Dashboard:** [http://localhost:8889/yago](http://localhost:8889/yago)
+- **Blazegraph Dashboard:** [http://localhost:8889/](http://localhost:8889/)
 
 ---
 
